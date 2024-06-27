@@ -23,11 +23,14 @@ jobs:
     - name: Pull Docker image from Docker Hub
       run: docker pull ${{ env.DOCKERHUB_IMAGE }}
 
+
+    - name: Log in to Docker Hub
+      # 登录阿里云镜像仓库
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_REGISTRY }} --password-stdin
+
     - name: Push Docker image to Aliyun
       run: |
         docker version
-        # 登录阿里云镜像仓库
-        docker login --username=${{ secrets.DOCKER_USERNAME }} --password-stdin=${{ secrets.DOCKER_PASSWORD }} ${{ secrets.DOCKER_REGISTRY }}
         # 镜像打标签
         docker tag ${{ env.DOCKERHUB_IMAGE }} ${{ env.ALIYUN_IMAGE }}
         # 推送镜像到镜像仓库
