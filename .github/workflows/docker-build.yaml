@@ -6,12 +6,12 @@ on:
       - main  # 触发工作流的分支
 
 jobs:
-  transfer-docker-image:
+  build:
     runs-on: ubuntu-latest
 
-   env:
-    DOCKERHUB_IMAGE: dpage/pgadmin4:8.8  # Docker Hub 镜像
-    ALIYUN_IMAGE: ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.ALIYUN_NAMESPACE }}/dpage/pgadmin4:8.8  # 阿里云镜像
+    env:
+      DOCKERHUB_IMAGE: dpage/pgadmin4:8.8  # Docker Hub 镜像
+      ALIYUN_IMAGE: ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.ALIYUN_NAMESPACE }}/dpage/pgadmin4:8.8  # 阿里云镜像
 
     steps:
     - name: Checkout repository
