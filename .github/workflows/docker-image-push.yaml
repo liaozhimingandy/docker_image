@@ -1,4 +1,4 @@
-name: Docker Hub to Aliyun Transfer
+name: Docker Hub 镜像转存至阿里云镜像仓库
 
 on:
   push:
@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCKERHUB_IMAGE: dpage/pgadmin4:8.8  # Docker Hub 镜像
       IMAGE_SRC: ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.ALIYUN_NAMESPACE }}
-      IMAGES: dpage/pgadmin4:8.8,node:20
+      IMAGES: dpage/pgadmin4:8.8,node:20,nginx:1.27
 
     steps:
       - name: Checkout repository
@@ -21,7 +20,7 @@ jobs:
       # - name: Log in to Docker Hub
       #   run: echo "${{ secrets.DOCKERHUB_USERNAME }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Log in to Docker Hub
-      # 登录阿里云镜像仓库
+        # 登录阿里云镜像仓库
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_REGISTRY }} --password-stdin
 
       - name: Pull Docker image from Docker Hub and Push Docker image to Aliyun
@@ -33,7 +32,7 @@ jobs:
             # pull the romote image from the registry
             docker pull $image_name
 
-            # Tag the remote image with the local
+            # Tag the local image with the remote
             image_name_new=$(echo "$image_name" | awk -F'/' '{ if (NF > 1) print $2; else print $0 }') 
             docker tag $image_name ${{ env.IMAGE_SRC }}/$image_name_new
 
@@ -41,6 +40,6 @@ jobs:
             docker push ${{ env.IMAGE_SRC }}/$image_name_new
 
             # echo
-            echo  ********$image_name pulled********
+            echo  ********$image_namet推送成功********
           done
 
