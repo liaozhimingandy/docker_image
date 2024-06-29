@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCKERHUB_IMAGE: dpage/pgadmin4:8.8  # Docker Hub 镜像
-      ALIYUN_IMAGE: ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.ALIYUN_NAMESPACE }}/pgadmin4:8.8  # 阿里云镜像
+      DOCKERHUB_IMAGE: node:20  # Docker Hub 镜像
+      ALIYUN_IMAGE: ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.ALIYUN_NAMESPACE }}/node:20  # 阿里云镜像
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      
+
     # - name: Log in to Docker Hub
     #   run: echo "${{ secrets.DOCKERHUB_USERNAME }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
