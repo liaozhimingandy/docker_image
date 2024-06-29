@@ -40,6 +40,6 @@ jobs:
             docker push ${{ env.IMAGE_SRC }}/$image_name_new
 
             # echo
-            echo  ********$image_namet推送成功********
+            echo  ******** 镜像: $image_name 推送成功********
           done
 
