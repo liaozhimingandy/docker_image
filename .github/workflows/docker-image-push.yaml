@@ -30,15 +30,15 @@ jobs:
           IFS=',' read -ra images <<< ${{ env.IMAGES }}
 
           for image_name in ${images[@]}; do
-            image_name=$(echo "$image_name" | awk -F'/' '{ if (NF > 1) print $2; else print $0 }') 
             # pull the romote image from the registry
             docker pull $image_name
 
             # Tag the remote image with the local
-            docker tag $image_name ${{ env.IMAGE_SRC }}/$image_name
+            image_name_new=$(echo "$image_name" | awk -F'/' '{ if (NF > 1) print $2; else print $0 }') 
+            docker tag $image_name ${{ env.IMAGE_SRC }}/$image_name_new
 
             # push the remote image
-            docker push ${{ env.IMAGE_SRC }}/$image_name
+            docker push ${{ env.IMAGE_SRC }}/$image_name_new
 
             # echo
             echo  ********$image_name pulled********
