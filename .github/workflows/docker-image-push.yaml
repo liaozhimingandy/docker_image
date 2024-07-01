@@ -11,7 +11,7 @@ jobs:
 
     env:
       IMAGE_SRC: ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.ALIYUN_NAMESPACE }}
-      IMAGES: dpage/pgadmin4:8.8,node:20,nginx:1.27
+      IMAGES: dpage/pgadmin4:8.8,node:20,nginx:1.27,dslim/slim:1.40.10
 
     steps:
       - name: Checkout repository
