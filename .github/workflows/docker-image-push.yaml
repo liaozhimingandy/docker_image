@@ -12,8 +12,8 @@ jobs:
     env:
       ALIYUN_REGISTRY: "${{ secrets.DOCKER_REGISTRY }}"
       ALIYUN_NAME_SPACE: "${{ secrets.ALIYUN_NAMESPACE }}"
-      ALIYUN_REGISTRY_USER: "${{ secrets.ALIYUN_REGISTRY_USER }}"
-      ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
+      ALIYUN_REGISTRY_USER: "${{ secrets.DOCKER_USERNAME }}"
+      ALIYUN_REGISTRY_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
 
     steps:
       - name: Before freeing up disk space
