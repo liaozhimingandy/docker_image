@@ -1,3 +1,2 @@
-nginx:1.27
-dslim/slim:1.40.10
-node:20
+ollama/ollama:0.3.11-rc4
+ghcr.io/open-webui/open-webui:main
